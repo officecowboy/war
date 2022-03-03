@@ -32,7 +32,7 @@ class Deck {
 
     createDeck() {
 
-        Deck.cards = []
+        let cards = []
 
         let suitArray = ["hearts", "spades", "clubs", "diamonds"]
         let rankArray = ["ace", 2, 3, 4, 5, 6, 7, 8, 9, 10, "jack", "queen", "king"]
@@ -40,15 +40,26 @@ class Deck {
         for (let i = 0; i < suitArray.length; i++) {
             for (let j = 0; j < rankArray.length; j + 1) {
                 let freshCard = new Card(suitArray[i], rankArray[j], j += 1)
-                Deck.cards.push(freshCard)
+                cards.push(freshCard)
             }
         }
 
-        return Deck.cards
+        function shuffle(cards) {
+            let currentIndex = cards.length,  randomIndex;
 
+            while (currentIndex != 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [cards[currentIndex], cards[randomIndex]] = [cards[randomIndex], cards[currentIndex]];
+            }
+        }
+        
+        shuffle(cards);
+
+        return cards;
     }
 }
 
-    const freshDeck = new Deck()
+const freshDeck = new Deck()
 
 console.log(freshDeck)
