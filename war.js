@@ -62,4 +62,23 @@ class Deck {
 
 const freshDeck = new Deck()
 
-console.log(freshDeck)
+let playerOne = []
+let playerTwo = []
+
+function splitDeck() {
+    for (let i = 0; i < 26; i++) {
+        playerOne.push(freshDeck.cards[i])
+    }
+    for (let i = 26; i < 52; i++) {
+        playerTwo.push(freshDeck.cards[i])
+    }
+}
+
+splitDeck();
+
+console.log(playerTwo.length)
+
+
+
+
+
