@@ -86,6 +86,48 @@ function startGame() {
             console.log("Player One plays " + playerOne[0].rank + " of " + playerOne[0].suit + " and Player Two plays " + playerTwo[0].rank + " of " + playerTwo[0].suit + ". Player One Wins! Player One has " + playerOne.length + " cards and Player Two has " + playerTwo.length + " cards.") 
     }
 
+         if (playerOne[0].score <  playerTwo[0].score) {
+            playerTwo.push(playerOne[0])
+            playerOne.shift()
+            playerTwo.push(playerTwo[0])
+            playerTwo.shift()
+            console.log("Player One plays " + playerOne[0].rank + " of " + playerOne[0].suit + " and Player Two plays " + playerTwo[0].rank + " of " + playerTwo[0].suit + ". Player Two Wins! Player One has " + playerOne.length + " cards and Player Two has " + playerTwo.length + " cards.") 
+    }
+
+        if (playerOne[0].score === playerTwo[0].score) {
+            
+            while (playerOne[0].score === playerTwo[0].score) {
+                console.log("It's a tie! Let the war begin...")
+                let faceDown = []
+                faceDown.push(playerOne[0], playerOne[1], playerOne[2], playerOne[3], playerTwo[0], playerTwo[1], playerTwo[2], playerTwo[3])
+                playerOne.splice(0, 4)
+                playerTwo.splice(0, 4)
+            }   
+            
+            if (playerOne[0].score > playerTwo[0].score) {
+                playerOne.push(playerOne[0])
+                playerOne.shift()
+                playerOne.push(playerTwo[0])
+                playerTwo.shift()
+                while (faceDown.length > 0) {
+                    playerOne.push(faceDown[0])
+                    faceDown.shift()
+                }   
+                console.log("Player One plays " + playerOne[0].rank + " of " + playerOne[0].suit + " and Player Two plays " + playerTwo[0].rank + " of " + playerTwo[0].suit + ". Player One Wins! Player One has " + playerOne.length + " cards and Player Two has " + playerTwo.length + " cards.") 
+            }       
+
+            if (playerOne[0].score <  playerTwo[0].score) {
+                playerTwo.push(playerOne[0])
+                playerOne.shift()
+                playerTwo.push(playerTwo[0])
+                playerTwo.shift()
+                while (faceDown.length > 0) {
+                    playerTwo.push(faceDown[0])
+                    faceDown.shift()
+                }
+                console.log("Player One plays " + playerOne[0].rank + " of " + playerOne[0].suit + " and Player Two plays " + playerTwo[0].rank + " of " + playerTwo[0].suit + ". Player Two Wins! Player One has " + playerOne.length + " cards and Player Two has " + playerTwo.length + " cards.") 
+            }
+        }
 }
 
 startGame();
