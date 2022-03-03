@@ -76,7 +76,21 @@ function splitDeck() {
 
 splitDeck();
 
-console.log(playerTwo.length)
+function startGame() {
+
+        if (playerOne[0].score > playerTwo[0].score) {
+            playerOne.push(playerOne[0])
+            playerOne.shift()
+            playerOne.push(playerTwo[0])
+            playerTwo.shift()
+            console.log("Player One plays " + playerOne[0].rank + " of " + playerOne[0].suit + " and Player Two plays " + playerTwo[0].rank + " of " + playerTwo[0].suit + ". Player One Wins! Player One has " + playerOne.length + " cards and Player Two has " + playerTwo.length + " cards.") 
+    }
+
+}
+
+startGame();
+
+
 
 
 
