@@ -106,11 +106,70 @@ function playGame() {
 
         let faceDown = []
 
+        function mix(faceDown) {
+          let currentIndex = faceDown.length, randomIndex;
+
+          while (currentIndex != 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+            [faceDown[currentIndex], faceDown[randomIndex]] = [faceDown[randomIndex], faceDown[currentIndex]];
+          }
+        }
+
         while (playerOne[0].score === playerTwo[0].score) {
+
           console.log("Player One plays " + playerOne[0].rank + " of " + playerOne[0].suit + " and Player Two plays " + playerTwo[0].rank + " of " + playerTwo[0].suit + ". It's a tie! Let the war begin...")
-          faceDown.push(playerOne[0], playerOne[1], playerOne[2], playerOne[3], playerTwo[0], playerTwo[1], playerTwo[2], playerTwo[3])
-          playerOne.splice(0, 4)
-          playerTwo.splice(0, 4)
+
+          function tie() {
+
+            if (playerOne.length > 4 && playerTwo.length > 4) {
+              faceDown.push(playerOne[0], playerOne[1], playerOne[2], playerOne[3], playerTwo[0], playerTwo[1], playerTwo[2], playerTwo[3])
+              mix(faceDown)
+              playerOne.splice(0, 4)
+              playerTwo.splice(0, 4)
+              return
+            }
+
+            if (playerOne.length === 4 || playerTwo.length === 4) {
+              faceDown.push(playerOne[0], playerOne[1], playerOne[2], playerTwo[0], playerTwo[1], playerTwo[2])
+              mix(faceDown)
+              playerOne.splice(0, 3)
+              playerTwo.splice(0, 3)
+              return
+            }
+
+            if (playerOne.length === 3 || playerTwo.length === 3) {
+              faceDown.push(playerOne[0], playerOne[1], playerTwo[0], playerTwo[1])
+              mix(faceDown)
+              playerOne.splice(0, 2)
+              playerTwo.splice(0, 2)
+              return
+            }
+
+            if (playerOne.length === 2 || playerTwo.length === 2) {
+              faceDown.push(playerOne[0], playerTwo[0])
+              mix(faceDown)
+              playerOne.splice(0, 1)
+              playerTwo.splice(0, 1)
+              return
+            }
+
+            if (playerOne.length === 1) {
+              faceDown.push(playerTwo[0])
+              playerTwo.shift()
+              return
+            }
+
+            if (playerTwo.length === 1) {
+              faceDown.push(playerOne[0])
+              playerOne.shift()
+              return
+            }
+
+          }
+
+          tie();
+
         }
 
         if (playerOne[0].score > playerTwo[0].score) {
