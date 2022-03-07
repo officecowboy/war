@@ -174,10 +174,11 @@ function playGame() {
 
         if (playerOne[0].score > playerTwo[0].score) {
           console.log("Player One plays " + playerOne[0].rank + " of " + playerOne[0].suit + " and Player Two plays " + playerTwo[0].rank + " of " + playerTwo[0].suit + ". Player One Wins!")
-          playerOne.push(playerOne[0])
+          faceDown.push(playerOne[0])
           playerOne.shift()
-          playerOne.push(playerTwo[0])
+          faceDown.push(playerTwo[0])
           playerTwo.shift()
+          mix(faceDown)
           while (faceDown.length > 0) {
             playerOne.push(faceDown[0])
             faceDown.shift()
@@ -188,10 +189,11 @@ function playGame() {
 
         if (playerOne[0].score < playerTwo[0].score) {
           console.log("Player One plays " + playerOne[0].rank + " of " + playerOne[0].suit + " and Player Two plays " + playerTwo[0].rank + " of " + playerTwo[0].suit + ". Player Two Wins!")
-          playerTwo.push(playerOne[0])
+          faceDown.push(playerOne[0])
           playerOne.shift()
-          playerTwo.push(playerTwo[0])
+          faceDown.push(playerTwo[0])
           playerTwo.shift()
+          mix(faceDown)
           while (faceDown.length > 0) {
             playerTwo.push(faceDown[0])
             faceDown.shift()
